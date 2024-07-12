@@ -133,13 +133,14 @@ public class ConsumirGutendex {
             return;
         }
         var fechaAutorVivo = lectura.nextInt();
-        if (Integer.toString(fechaAutorVivo).matches("\\d{4}")){
-            System.out.println("No ingresaste un número válido para el año");
-            lectura.nextLine();
-            return;
-        }
+//        if (Integer.toString(fechaAutorVivo).matches("\\d{4}")){
+//            System.out.println("No ingresaste un número válido para el año");
+//            lectura.nextLine();
+//            return;
+//        }
 
         var autoresVivos = autorRepository.findAll().stream()
+                .filter(a -> a.getFechaNacimiento() != null && a.getFechaNacimiento() != null)
                 .filter(a -> a.getFechaFallecimiento() > fechaAutorVivo && a.getFechaNacimiento()<= fechaAutorVivo)
                 .collect(Collectors.toList());
 
